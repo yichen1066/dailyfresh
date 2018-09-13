@@ -45,9 +45,6 @@ public class UserService {
     @Autowired  
     private UserRepository userRepository;
 
-    @Value("${page.size}")
-    private Integer page_size;
-
 	/**
 	 *	根据指定条件查询
 	 * @param userVo

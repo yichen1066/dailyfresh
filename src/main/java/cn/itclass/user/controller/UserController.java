@@ -19,6 +19,7 @@ import springfox.documentation.spring.web.json.Json;
  */  
 @RestController
 @Api(tags = "用户信息")
+@RequestMapping(value = "/user")
 public class UserController {
 
     @Autowired  

@@ -66,14 +66,20 @@
         <appender-ref ref="INFO" />
     </logger>
 
-    <!--打印异常错误日志-->
-    <logger name="errorLog" level="error" additivity="false">
-        <appender-ref ref="ERROR" />
-    </logger>
+    <!--&lt;!&ndash;打印异常错误日志&ndash;&gt;-->
+    <!--<logger name="errorLog" level="error" additivity="false">-->
+        <!--<appender-ref ref="ERROR" />-->
+    <!--</logger>-->
 
-    <!-- 日志级别 -->
-    <root level="debug">
+    <!--&lt;!&ndash; 日志级别 &ndash;&gt;-->
+    <!--<root level="debug">-->
+        <!--<appender-ref ref="STDOUT" />-->
+    <!--</root>-->
+
+    <root level="info">
+        <appender-ref ref="INFO" />
         <appender-ref ref="STDOUT" />
+        <appender-ref ref="ERROR" />
     </root>
 
     <!--<root>-->

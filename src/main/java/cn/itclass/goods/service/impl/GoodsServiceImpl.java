@@ -56,4 +56,13 @@ public class GoodsServiceImpl implements GoodsService {
         BeanUtils.copyProperties(goodsInfoVO, goodsInfoEntity);
         return this.goodsRepository.save(goodsInfoEntity);
     }
+
+    /**
+     * 根据id删除商品
+     * @param id
+     */
+    @Override
+    public void deleteGoodsById(Long id) {
+        this.goodsRepository.deleteById(id);
+    }
 }

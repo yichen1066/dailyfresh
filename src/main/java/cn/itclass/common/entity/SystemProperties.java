@@ -1,4 +1,4 @@
-package cn.itclass.goods.entity;
+package cn.itclass.common.entity;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;

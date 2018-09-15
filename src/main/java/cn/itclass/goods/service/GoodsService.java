@@ -12,4 +12,6 @@ public interface GoodsService {
     public List<GoodsInfoEntity> getGoodsList(Integer pageSize, Integer pageNum, Sort sort);
 
     public GoodsInfoEntity saveGoodsInfo(GoodsInfoVO goodsInfoVO);
+
+    public void deleteGoodsById(Long id);
 }

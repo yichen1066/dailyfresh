@@ -11,7 +11,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.2.5.RELEASE</version>
+        <version>2.0.3.RELEASE</version>
     </parent>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -27,21 +27,21 @@
         </dependency>
 
         <!-- 整个redis -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-            <version>RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>2.7.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-redis</artifactId>
-            <version>1.6.2.RELEASE</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-data-redis</artifactId>-->
+            <!--&lt;!&ndash;<version>RELEASE</version>&ndash;&gt;-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>redis.clients</groupId>-->
+            <!--<artifactId>jedis</artifactId>-->
+            <!--<version>2.7.3</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.data</groupId>-->
+            <!--<artifactId>spring-data-redis</artifactId>-->
+            <!--<version>1.6.2.RELEASE</version>-->
+        <!--</dependency>-->
 
         <!-- aop -->
         <dependency>
@@ -49,11 +49,11 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
-        <!--支持使用 JDBC 访问数据库 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
+        <!--&lt;!&ndash;支持使用 JDBC 访问数据库 &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-jdbc</artifactId>-->
+        <!--</dependency>-->
         <!--添加适用于生产环境的功能，如性能指标和监测等功能。 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -65,16 +65,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-        <!--PostgreSQL / DataSource -->
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-jdbc</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.2.2</version>
+            <!--<version>42.2.2</version>-->
             <scope>runtime</scope>
         </dependency>
         <!--Json Support -->
@@ -85,10 +80,10 @@
         </dependency>
 
         <!-- rabbitmq -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-amqp</artifactId>-->
+        <!--</dependency>-->
 
         <!-- httpClient -->
         <dependency>
@@ -96,20 +91,11 @@
             <artifactId>commons-httpclient</artifactId>
             <version>3.1</version>
         </dependency>
-        <!--Swagger support -->
-        <!--   <dependency>
-              <groupId>com.mangofactory</groupId>
-              <artifactId>swagger-springmvc</artifactId>
-              <version>0.9.5</version>
-          </dependency> -->
+
         <dependency>
-
             <groupId>io.springfox</groupId>
-
             <artifactId>springfox-swagger2</artifactId>
-
             <version>2.2.2</version>
-
         </dependency>
 
         <dependency>
@@ -122,67 +108,22 @@
 
         </dependency>
 
-        <!-- 支持jsp start -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-        </dependency>
-        <dependency>
-
-            <groupId>org.springframework.boot</groupId>
-
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-
-            <scope>provided</scope>
-
-        </dependency>
-
-        <dependency>
-
-            <groupId>org.apache.tomcat.embed</groupId>
-
-            <artifactId>tomcat-embed-jasper</artifactId>
-
-            <scope>provided</scope>
-
-        </dependency>
-        <!-- end -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-jpamodelgen</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.neo4j</groupId>
-            <artifactId>neo4j-cypher-compiler-2.1</artifactId>
-            <version>2.1.5</version>
-        </dependency>
-        <dependency>
-            <groupId>org.neo4j</groupId>
-            <artifactId>neo4j-cypher-compiler-2.1</artifactId>
-            <version>2.1.5</version>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>
                 spring-boot-starter-data-elasticsearch
             </artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-solr</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jta-atomikos</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-velocity</artifactId>
         </dependency>
     </dependencies>
     <build>

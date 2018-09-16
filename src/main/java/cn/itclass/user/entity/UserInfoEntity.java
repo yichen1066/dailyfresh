@@ -82,6 +82,8 @@ public class UserInfoEntity extends BaseEntity {
 	/**
 	 * 出生年月日
 	 */
+	@Temporal(TemporalType.DATE)
+	@Column(length = 10)
 	private Date birthdate;
 
 	/**

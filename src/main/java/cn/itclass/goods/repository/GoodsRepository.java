@@ -4,6 +4,9 @@ import cn.itclass.goods.entity.GoodsInfoEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -15,10 +18,7 @@ import java.util.List;
  */
 
 public interface GoodsRepository extends JpaRepository<GoodsInfoEntity, Long> {
-
-//    @Query("select d from GoodsInfoEntity d")
-//    Page<GoodsInfoEntity> findAllGoods(Pageable pageable);
-
-//    @Override
-//    Page<GoodsInfoEntity> findAll(Pageable pageable);
+    @Modifying
+    @Query("update GoodsInfoEntity g set g.clickNum = g.clickNum + 1 where g.id = :goodsId")
+    int addGoodsView(@Param("goodsId") Long goodsId);
 }

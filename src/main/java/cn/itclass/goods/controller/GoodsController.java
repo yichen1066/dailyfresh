@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
@@ -81,8 +82,20 @@ public class GoodsController {
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ApiOperation(value = "删除商品信息", httpMethod = "POST")
-    public JsonResult delete(@PathVariable(value = "id") String id){
-        this.goodsService.deleteGoodsById(Long.valueOf(id));
+    public JsonResult delete(@PathVariable(value = "id") Long id){
+        this.goodsService.deleteGoodsById(id);
         return JsonResult.success("删除商品成功");
+    }
+
+    @RequestMapping(value = "/addView/{id}", method = RequestMethod.POST)
+    @ApiOperation(value = "增加商品访问量", httpMethod = "POST")
+    public JsonResult addView(@PathVariable(value = "id") Long id){
+        int resultCode = this.goodsService.addGoodsView(id);
+        if(resultCode == 1){
+            logger.info(MODULE_NAME, "addView", "增加商品访问量成功");
+            return JsonResult.success("增加商品访问量成功");
+        }
+        logger.error(MODULE_NAME, "addView", "增加商品访问量失败", SystemResponseEnum.PARAM_ERROR);
+        return JsonResult.fail(SystemResponseEnum.PARAM_ERROR);
     }
 }

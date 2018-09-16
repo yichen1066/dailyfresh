@@ -14,4 +14,6 @@ public interface GoodsService {
     public GoodsInfoEntity saveGoodsInfo(GoodsInfoVO goodsInfoVO);
 
     public void deleteGoodsById(Long id);
+
+    public int addGoodsView(Long id);
 }

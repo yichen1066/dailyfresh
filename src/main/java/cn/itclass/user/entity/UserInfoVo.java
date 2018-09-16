@@ -4,10 +4,18 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Column;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @ApiModel(value = "UserInfoVo", description = "用户信息Vo")
 public class UserInfoVo {
+
+    /**
+     * 用户账户名
+     */
+    @NotBlank(message = "帐户名不能为空")
+    @ApiModelProperty(value = "userAccount", name = "用户帐户名")
+    private String userAccount;
 
     /**
      * 昵称
@@ -63,5 +71,13 @@ public class UserInfoVo {
 
     public void setResidence(String residence) {
         this.residence = residence;
+    }
+
+    public String getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(String userAccount) {
+        this.userAccount = userAccount;
     }
 }

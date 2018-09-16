@@ -9,7 +9,9 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.servlet.http.HttpServletRequest;
 
+import cn.itclass.common.utils.DateUtils;
 import cn.itclass.user.entity.UserInfoEntity;
+import cn.itclass.user.entity.UserInfoVo;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -101,5 +103,15 @@ public class UserService {
 	 */
 	public UserInfoEntity queryAccountInfo(String account){
 		return this.userRepository.findByUserAccountIs(account);
+	}
+
+	@Transactional
+	public int updateUserInfo(UserInfoVo userInfoVo){
+		int resultCode = this.userRepository.updateUserByRealNameAndNickNameAndBirthDateAndResidence(userInfoVo.getUserAccount(),
+				userInfoVo.getRealName(),
+				userInfoVo.getNickName(),
+				userInfoVo.getBirthdate(),
+				userInfoVo.getResidence());
+		return resultCode;
 	}
 }

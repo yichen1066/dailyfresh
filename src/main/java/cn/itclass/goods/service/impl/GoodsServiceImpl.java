@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -61,8 +62,20 @@ public class GoodsServiceImpl implements GoodsService {
      * 根据id删除商品
      * @param id
      */
+    @Transactional
     @Override
-    public void deleteGoodsById(Long id) {
+    public void deleteGoodsById(String id) {
         this.goodsRepository.deleteById(id);
+    }
+
+    /**
+     * 商品访问量+1
+     * @return
+     */
+    @Transactional
+    @Override
+    public int addGoodsView(String id) {
+        int resultCode = this.goodsRepository.addGoodsView(id);
+        return resultCode;
     }
 }

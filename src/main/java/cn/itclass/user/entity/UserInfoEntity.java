@@ -3,6 +3,7 @@ package cn.itclass.user.entity;
 import cn.itclass.common.entity.BaseEntity;
 import cn.itclass.goods.entity.GoodsInfoEntity;
 import com.fasterxml.jackson.databind.ser.std.CollectionSerializer;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -25,9 +26,10 @@ public class UserInfoEntity extends BaseEntity {
 	 * 用户id，主键
 	 */
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="user_id")
-	private Long id;
+	@GenericGenerator(name = "uuidGenerator", strategy = "uuid")
+	@GeneratedValue(generator = "uuidGenerator")
+	@Column(name="user_id", length = 32)
+	private String userId;
 
 	/**
 	 * 账号名
@@ -108,12 +110,12 @@ public class UserInfoEntity extends BaseEntity {
 //		this.goodsInfoEntities = goodsInfoEntities;
 //	}
 
-	public Long getId() {
-		return id;
+	public String getId() {
+		return userId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setId(String id) {
+		this.userId = id;
 	}
 
 	public String getUserAccount() {

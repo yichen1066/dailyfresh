@@ -20,5 +20,9 @@ import java.util.List;
 public interface GoodsRepository extends JpaRepository<GoodsInfoEntity, Long> {
     @Modifying
     @Query("update GoodsInfoEntity g set g.clickNum = g.clickNum + 1 where g.id = :goodsId")
-    int addGoodsView(@Param("goodsId") Long goodsId);
+    int addGoodsView(@Param("goodsId") String goodsId);
+
+    @Modifying
+    @Query("delete from GoodsInfoEntity g where g.goodsId = :goodsId")
+    void deleteById(@Param("goodsId") String goodsId);
 }

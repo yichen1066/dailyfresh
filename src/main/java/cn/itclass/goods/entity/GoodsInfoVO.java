@@ -2,6 +2,7 @@ package cn.itclass.goods.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.models.auth.In;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Column;
@@ -94,7 +95,7 @@ public class GoodsInfoVO {
      */
     @NotBlank(message = "商品库存不能为空")
     @ApiModelProperty(value = "stock", name = "商品库存")
-    private String stock;
+    private Integer stock;
 
     /**
      * 商品类型
@@ -183,11 +184,11 @@ public class GoodsInfoVO {
         this.detailContent = detailContent;
     }
 
-    public String getStock() {
+    public Integer getStock() {
         return stock;
     }
 
-    public void setStock(String stock) {
+    public void setStock(Integer stock) {
         this.stock = stock;
     }
 

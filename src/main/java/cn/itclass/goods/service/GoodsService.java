@@ -13,7 +13,7 @@ public interface GoodsService {
 
     public GoodsInfoEntity saveGoodsInfo(GoodsInfoVO goodsInfoVO);
 
-    public void deleteGoodsById(Long id);
+    public void deleteGoodsById(String id);
 
-    public int addGoodsView(Long id);
+    public int addGoodsView(String id);
 }

@@ -2,6 +2,7 @@ package cn.itclass.goods.entity;
 
 import cn.itclass.common.entity.BaseEntity;
 import cn.itclass.user.entity.UserInfoEntity;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.mapping.Join;
 
 import javax.persistence.*;
@@ -19,9 +20,10 @@ public class GoodsInfoEntity extends BaseEntity {
      * 商品id，主键
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name="goods_id")
-    private Long goodsId;
+    @GenericGenerator(name = "uuidGenerator", strategy = "uuid")
+    @GeneratedValue(generator = "uuidGenerator")
+    @Column(name="goods_id", length = 32)
+    private String goodsId;
 
     /**
      * 商品名称
@@ -93,7 +95,7 @@ public class GoodsInfoEntity extends BaseEntity {
      * 商品库存
      */
     @Column(name = "stock", nullable = false)
-    private String stock;
+    private Integer stock;
 
     /**
      * 商品类型
@@ -117,11 +119,11 @@ public class GoodsInfoEntity extends BaseEntity {
 //        this.userInfoEntities = userInfoEntities;
 //    }
 
-    public Long getId() {
+    public String getId() {
         return goodsId;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.goodsId = id;
     }
 
@@ -213,11 +215,11 @@ public class GoodsInfoEntity extends BaseEntity {
         this.detailContent = detailContent;
     }
 
-    public String getStock() {
+    public Integer getStock() {
         return stock;
     }
 
-    public void setStock(String stock) {
+    public void setStock(Integer stock) {
         this.stock = stock;
     }
 

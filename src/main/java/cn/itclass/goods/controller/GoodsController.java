@@ -82,14 +82,14 @@ public class GoodsController {
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ApiOperation(value = "删除商品信息", httpMethod = "POST")
-    public JsonResult delete(@PathVariable(value = "id") Long id){
+    public JsonResult delete(@PathVariable(value = "id") String id){
         this.goodsService.deleteGoodsById(id);
         return JsonResult.success("删除商品成功");
     }
 
     @RequestMapping(value = "/addView/{id}", method = RequestMethod.POST)
     @ApiOperation(value = "增加商品访问量", httpMethod = "POST")
-    public JsonResult addView(@PathVariable(value = "id") Long id){
+    public JsonResult addView(@PathVariable(value = "id") String id){
         int resultCode = this.goodsService.addGoodsView(id);
         if(resultCode == 1){
             logger.info(MODULE_NAME, "addView", "增加商品访问量成功");

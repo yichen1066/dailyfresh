@@ -1,9 +1,12 @@
 package cn.itclass.user.entity;
 
 import cn.itclass.common.entity.BaseEntity;
+import cn.itclass.goods.entity.GoodsInfoEntity;
+import com.fasterxml.jackson.databind.ser.std.CollectionSerializer;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * 用户信息表
@@ -90,6 +93,20 @@ public class UserInfoEntity extends BaseEntity {
 	 * 居住地址
 	 */
 	private String residence;
+
+//	/**
+//	 * 多对多关联
+//	 */
+//	@ManyToMany(mappedBy = "userInfoEntities")
+//	private Set<GoodsInfoEntity> goodsInfoEntities;
+//
+//	public Set<GoodsInfoEntity> getGoodsInfoEntities() {
+//		return goodsInfoEntities;
+//	}
+//
+//	public void setGoodsInfoEntities(Set<GoodsInfoEntity> goodsInfoEntities) {
+//		this.goodsInfoEntities = goodsInfoEntities;
+//	}
 
 	public Long getId() {
 		return id;

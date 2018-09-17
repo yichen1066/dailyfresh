@@ -1,14 +1,17 @@
 package cn.itclass.goods.entity;
 
 import cn.itclass.common.entity.BaseEntity;
+import cn.itclass.user.entity.UserInfoEntity;
+import org.hibernate.mapping.Join;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name="df_goods")
-public class GoodsInfoEntity extends  BaseEntity {
+public class GoodsInfoEntity extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
@@ -97,6 +100,22 @@ public class GoodsInfoEntity extends  BaseEntity {
      */
     @Column(name = "type", nullable = false)
     private String type;
+//
+//    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @JoinTable(name = "df_cart", joinColumns = {
+//            @JoinColumn(name = "goods_id", referencedColumnName = "goods_id")},
+//            inverseJoinColumns = {
+//                    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+//            })
+//    private Set<UserInfoEntity> userInfoEntities;
+//
+//    public Set<UserInfoEntity> getUserInfoEntities() {
+//        return userInfoEntities;
+//    }
+//
+//    public void setUserInfoEntities(Set<UserInfoEntity> userInfoEntities) {
+//        this.userInfoEntities = userInfoEntities;
+//    }
 
     public Long getId() {
         return goodsId;

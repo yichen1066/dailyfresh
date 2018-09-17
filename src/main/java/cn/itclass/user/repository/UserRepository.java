@@ -34,12 +34,17 @@ public interface UserRepository extends JpaRepository<UserInfoEntity, Integer>, 
 	 */
 	UserInfoEntity findByUserAccountIs(String userAccount);
 
+	/**
+	 * 更新用户个人信息
+	 * @param userAccount
+	 * @param realName
+	 * @param nickName
+	 * @param birthdate
+	 * @param residence
+	 * @return
+	 */
 	@Modifying
 	@Query(value = "update UserInfoEntity u set u.realName = :realName, u.nickName = :nickName, u.birthdate = :birthdate, u.residence = :residence where u.userAccount = :userAccount")
-	int updateUserByRealNameAndNickNameAndBirthDateAndResidence(@Param("userAccount") String userAccount,
-																 @Param("realName") String realName,
-																 @Param("nickName") String nickName,
-																 @Param("birthdate") Date birthdate,
-																 @Param("residence") String residence);
+	int updateUserByRealNameAndNickNameAndBirthDateAndResidence(@Param("userAccount") String userAccount, @Param("realName") String realName, @Param("nickName") String nickName, @Param("birthdate") Date birthdate, @Param("residence") String residence);
 
 }

@@ -22,14 +22,14 @@ public class CartInfoVO {
      */
     @NotNull(message = "商品id不能为空")
     @ApiModelProperty(value = "goodsId", name = "商品id")
-    private Long goodsId;
+    private String goodsId;
 
     /**
      * 用户id
      */
     @NotNull(message = "用户id不能为空")
     @ApiModelProperty(value = "userId", name = "用户id")
-    private Long userId;
+    private String userId;
 
     public Integer getCount() {
         return count;
@@ -39,19 +39,19 @@ public class CartInfoVO {
         this.count = count;
     }
 
-    public Long getGoodsId() {
+    public String getGoodsId() {
         return goodsId;
     }
 
-    public void setGoodsId(Long goodsId) {
+    public void setGoodsId(String goodsId) {
         this.goodsId = goodsId;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 }

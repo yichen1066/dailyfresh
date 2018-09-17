@@ -1,6 +1,7 @@
 package cn.itclass.cart.entity;
 
 import cn.itclass.common.entity.BaseEntity;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -14,9 +15,10 @@ public class CartInfoEntity extends BaseEntity {
      * 购物车id，主键
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name="cart_id")
-    private Long id;
+    @GenericGenerator(name = "uuidGenerator", strategy = "uuid")
+    @GeneratedValue(generator = "uuidGenerator")
+    @Column(name="cart_id", length = 32)
+    private String id;
 
     /**
      * 每一个购物车的购物数量
@@ -27,20 +29,20 @@ public class CartInfoEntity extends BaseEntity {
     /**
      * 商品id
      */
-    @Column(name = "goods_id")
-    private Long goodsId;
+    @Column(name = "goods_id", length = 32)
+    private String goodsId;
 
     /**
      * 用户id
      */
-    @Column(name = "user_id")
-    private Long userId;
+    @Column(name = "user_id", length = 32)
+    private String userId;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -52,19 +54,19 @@ public class CartInfoEntity extends BaseEntity {
         this.count = count;
     }
 
-    public Long getGoodsId() {
+    public String getGoodsId() {
         return goodsId;
     }
 
-    public void setGoodsId(Long goodsId) {
+    public void setGoodsId(String goodsId) {
         this.goodsId = goodsId;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 }

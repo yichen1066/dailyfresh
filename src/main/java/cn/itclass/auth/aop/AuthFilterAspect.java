@@ -22,7 +22,7 @@ public class AuthFilterAspect {
         Object arg = args[0];
         if(arg instanceof BaseVO){
             BaseVO baseVO = (BaseVO)arg;
-            if(!StringUtils.isNotEmpty(baseVO.getUserId())){
+            if(!StringUtils.isNotBlank(baseVO.getUserId())){
                 throw new AuthFilterException("用户id为空");
             }
         }

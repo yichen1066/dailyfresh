@@ -69,7 +69,7 @@ public class CartController {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ApiOperation(value = "deleteCartInfo", httpMethod = "POST")
     public JsonResult deleteCartInfo(@RequestBody DeleteCartInfoVO deleteCartInfoVO){
-        if(StringUtils.isNotEmpty(deleteCartInfoVO.getCartId())){
+        if(StringUtils.isNotBlank(deleteCartInfoVO.getCartId())){
             this.cartService.deleteCartInfo(deleteCartInfoVO.getCartId());
             return JsonResult.success("删除购物车成功");
         }

@@ -1,5 +1,6 @@
 package cn.itclass.cart.entity;
 
+import cn.itclass.common.entity.BaseVO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.NotBlank;
@@ -8,7 +9,7 @@ import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 
 @ApiModel(value = "CartInfoVO", description = "购物车Vo")
-public class CartInfoVO {
+public class CartInfoVO extends BaseVO {
 
     /**
      * 每一条购物车记录的购物数量
@@ -24,13 +25,6 @@ public class CartInfoVO {
     @ApiModelProperty(value = "goodsId", name = "商品id")
     private String goodsId;
 
-    /**
-     * 用户id
-     */
-    @NotNull(message = "用户id不能为空")
-    @ApiModelProperty(value = "userId", name = "用户id")
-    private String userId;
-
     public Integer getCount() {
         return count;
     }
@@ -45,13 +39,5 @@ public class CartInfoVO {
 
     public void setGoodsId(String goodsId) {
         this.goodsId = goodsId;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 }

@@ -1,7 +1,9 @@
 package cn.itclass.cart.controller;
 
+import cn.itclass.auth.annotation.AuthFilter;
 import cn.itclass.cart.entity.CartInfoDTO;
 import cn.itclass.cart.entity.CartInfoVO;
+import cn.itclass.cart.entity.GetCartInfoVO;
 import cn.itclass.cart.service.CartService;
 import cn.itclass.common.utils.JsonResult;
 import cn.itclass.goods.entity.GoodsInfoEntity;
@@ -16,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Api(tags = "购物车信息")
+@Api(value = "购物车")
 @RestController
 @RequestMapping(value = "/cart")
 public class CartController {
@@ -46,10 +48,11 @@ public class CartController {
      * @param user_id
      * @return
      */
-    @RequestMapping(value = "/findCartInfo", method = RequestMethod.POST)
+    @AuthFilter
+    @RequestMapping(value = "/getCartInfo", method = RequestMethod.POST)
     @ApiOperation(value = "查询购物车信息", httpMethod = "POST")
-    public JsonResult findCartInfo(@RequestParam String user_id){
-        List<CartInfoDTO> allCarts = this.cartService.findAllCarts(user_id);
+    public JsonResult getCartInfo(@RequestBody GetCartInfoVO cartInfoVO){
+        List<CartInfoDTO> allCarts = this.cartService.findAllCarts(cartInfoVO.getUser_id());
         return JsonResult.success(allCarts);
     }
 }

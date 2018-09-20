@@ -35,14 +35,32 @@ public class CartServiceImpl implements CartService {
         //object转为dto
         for(Object[] entity : goodsInfoEntities){
             CartInfoDTO cartInfoDTO = new CartInfoDTO();
-            cartInfoDTO.setDefaultPic((String)entity[0]);
-            cartInfoDTO.setGoodsTitle((String)entity[1]);
-            cartInfoDTO.setSellPrice((BigDecimal)entity[2]);
-            cartInfoDTO.setPriceUnit((String)entity[3]);
-            cartInfoDTO.setStock((Integer)entity[4]);
-            cartInfoDTO.setCount((Integer)entity[5]);
+            cartInfoDTO.setCartId((String)entity[0]);
+            cartInfoDTO.setDefaultPic((String)entity[1]);
+            cartInfoDTO.setGoodsTitle((String)entity[2]);
+            cartInfoDTO.setSellPrice((BigDecimal)entity[3]);
+            cartInfoDTO.setPriceUnit((String)entity[4]);
+            cartInfoDTO.setStock((Integer)entity[5]);
+            cartInfoDTO.setCount((Integer)entity[6]);
             cartInfoDTOS.add(cartInfoDTO);
         }
         return cartInfoDTOS;
+    }
+
+    /**
+     * 根据id删除购物车信息
+     * @param cartId
+     */
+    @Override
+    public void deleteCartInfo(String cartId) {
+        this.cartInfoRepository.deleteByCartId(cartId);
+    }
+
+    /**
+     * 清空个人购物车
+     */
+    @Override
+    public void deleteAllCartInfo(String userId) {
+        this.cartInfoRepository.deleteAllByUserId(userId);
     }
 }

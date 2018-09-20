@@ -10,4 +10,8 @@ public interface CartService {
     public void addCartInfo(CartInfoVO cartInfoVO);
 
     List<CartInfoDTO> findAllCarts(String userId);
+
+    void deleteCartInfo(String cartId);
+
+    void deleteAllCartInfo(String userId);
 }

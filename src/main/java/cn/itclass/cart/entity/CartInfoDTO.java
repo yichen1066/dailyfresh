@@ -7,6 +7,11 @@ public class CartInfoDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
+     * 购物车id
+     */
+    private String cartId;
+
+    /**
      * 商品默认展示图
      */
     private String defaultPic;
@@ -35,6 +40,14 @@ public class CartInfoDTO implements Serializable {
      * 该商品购买数量
      */
     private Integer count;
+
+    public String getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(String cartId) {
+        this.cartId = cartId;
+    }
 
     public String getDefaultPic() {
         return defaultPic;

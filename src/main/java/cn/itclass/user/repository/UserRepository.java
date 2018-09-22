@@ -18,7 +18,7 @@ import java.util.List;
  * @author Yi Chen
  *
  */
-public interface UserRepository extends JpaRepository<UserInfoEntity, Integer>, JpaSpecificationExecutor<UserInfoEntity> {
+public interface UserRepository extends JpaRepository<UserInfoEntity, String>, JpaSpecificationExecutor<UserInfoEntity> {
 	/**
 	 *	根据用户名分页查询
 	 * @param userName

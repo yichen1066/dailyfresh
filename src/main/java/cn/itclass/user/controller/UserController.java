@@ -21,7 +21,7 @@ import springfox.documentation.spring.web.json.Json;
  * @Description: 用户Controller
  */  
 @RestController
-@Api(tags = "用户信息")
+@Api(value = "用户信息")
 @RequestMapping(value = "/user")
 public class UserController {
 

@@ -1,5 +1,6 @@
 package cn.itclass.user.entity;
 
+import cn.itclass.common.entity.BaseVO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -8,7 +9,13 @@ import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @ApiModel(value = "UserInfoVo", description = "用户信息Vo")
-public class UserInfoVo {
+public class UserInfoVo extends BaseVO {
+
+    /**
+     * 默认收货地址id
+     */
+    @ApiModelProperty(value = "addressId", name = "收货地址id")
+    private String addressId;
 
     /**
      * 用户账户名
@@ -79,5 +86,13 @@ public class UserInfoVo {
 
     public void setUserAccount(String userAccount) {
         this.userAccount = userAccount;
+    }
+
+    public String getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(String addressId) {
+        this.addressId = addressId;
     }
 }

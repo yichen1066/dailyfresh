@@ -52,8 +52,8 @@ public class UserInfoEntity extends BaseEntity {
 	/**
 	 * 默认的收货地址id
 	 */
-	@Column(name="default_address_id",nullable = false)
-	private Integer defaultAddressId = 0;
+	@Column(name="default_address_id")
+	private String defaultAddressId;
 
 	/**
 	 * 注册时间
@@ -142,11 +142,11 @@ public class UserInfoEntity extends BaseEntity {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public Integer getDefaultAddressId() {
+	public String getDefaultAddressId() {
 		return defaultAddressId;
 	}
 
-	public void setDefaultAddressId(Integer defaultAddressId) {
+	public void setDefaultAddressId(String defaultAddressId) {
 		this.defaultAddressId = defaultAddressId;
 	}
 

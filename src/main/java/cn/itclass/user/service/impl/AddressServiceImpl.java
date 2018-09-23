@@ -93,4 +93,13 @@ public class AddressServiceImpl implements AddressService {
         }
         return JsonResult.success(addressDTOS);
     }
+
+    @Override
+    public JsonResult updateDefaultAddressId(UserInfoVo userInfoVo) {
+        int retCode =  this.addressRepository.updateDefaultAddressId(userInfoVo.getAddressId(), userInfoVo.getUserId());
+        if(retCode == 1){
+            return JsonResult.success("更新用户默认收货地址成功");
+        }
+        return JsonResult.fail(SystemResponseEnum.PARAM_ERROR);
+    }
 }

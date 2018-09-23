@@ -100,11 +100,18 @@ public class UserService {
 
 	/**
 	 * 查询账户信息
+	 * @param account
+	 * @return
 	 */
 	public UserInfoEntity queryAccountInfo(String account){
 		return this.userRepository.findByUserAccountIs(account);
 	}
 
+	/**
+	 * 更新用户个人信息
+	 * @param userInfoVo
+	 * @return
+	 */
 	@Transactional
 	public int updateUserInfo(UserInfoVo userInfoVo){
 		int resultCode = this.userRepository.updateUserByRealNameAndNickNameAndBirthDateAndResidence(userInfoVo.getUserAccount(),

@@ -7,8 +7,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "address_user_rel")
-public class AddressUserRelationshipEntity extends BaseEntity {
-    private static final long serialVersionUID = 1L;
+public class AddrUserRelEntity extends BaseEntity {
+    private static final long serialVersionUID = 124342L;
 
     /**
      * 地址与用户关系表id，主键
@@ -30,5 +30,21 @@ public class AddressUserRelationshipEntity extends BaseEntity {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(String addressId) {
+        this.addressId = addressId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

@@ -8,11 +8,11 @@ public class BaseVO {
     @ApiModelProperty(value = "userId", name = "用户id")
     private String userId;
 
-    public String getUser_id() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUser_id(String userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 }

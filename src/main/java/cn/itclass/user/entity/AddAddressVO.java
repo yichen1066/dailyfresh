@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
 @ApiModel(value = "AddAddressVo", description = "添加收货地址VO")
-public class AddAddressVO {
+public class AddAddressVO extends BaseVO{
 
     /**
      * 收件人

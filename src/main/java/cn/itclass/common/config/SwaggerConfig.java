@@ -26,10 +26,7 @@ public class SwaggerConfig {
 
     private ApiInfo getApiInfo(){
         return new ApiInfoBuilder()
-                .title("Swagger2....")
-                .description("Swagger2")
-                .version("1.0")
-                .license("Apache 2.0")
+                .title("Swagger2")
                 .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0")
                 .build();
     }

@@ -3,7 +3,8 @@ package cn.itclass.user.controller;
 import cn.itclass.auth.annotation.AuthFilter;
 import cn.itclass.common.entity.SystemResponseEnum;
 import cn.itclass.common.utils.JsonResult;
-import cn.itclass.user.entity.AddAddressVO;
+import cn.itclass.user.entity.AddressVO;
+import cn.itclass.user.entity.DelAddressVO;
 import cn.itclass.user.entity.GetAddressVO;
 import cn.itclass.user.entity.UserInfoVo;
 import cn.itclass.user.service.AddressService;
@@ -16,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import springfox.documentation.spring.web.json.Json;
 
 @RestController
 @Api(value = "收货地址信息")
@@ -33,7 +33,7 @@ public class AddressController {
     @AuthFilter
     @RequestMapping(value = "/add")
     @ApiOperation(value = "添加收货地址", httpMethod = "POST")
-    public JsonResult addAddrByUser(@RequestBody  AddAddressVO addAddressVO){
+    public JsonResult addAddrByUser(@RequestBody AddressVO addAddressVO){
         return this.addressService.addAddress(addAddressVO);
     }
 
@@ -53,5 +53,12 @@ public class AddressController {
             logger.error(MODULE_NAME, "updateDefaultAddressId", "更新默认收货地址失败， addressId=", userInfoVo.getAddressId());
         }
         return jsonResult;
+    }
+
+    @AuthFilter
+    @RequestMapping(value = "/delete")
+    @ApiOperation(value = "删除收货地址", httpMethod = "POST")
+    public JsonResult deleteAddress(@RequestBody DelAddressVO addressVO){
+        return this.addressService.deleteAddress(addressVO);
     }
 }

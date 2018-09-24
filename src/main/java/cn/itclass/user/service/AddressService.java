@@ -1,15 +1,15 @@
 package cn.itclass.user.service;
 
 import cn.itclass.common.utils.JsonResult;
-import cn.itclass.user.entity.AddAddressVO;
-import cn.itclass.user.entity.AddrUserRelVO;
+import cn.itclass.user.entity.AddressVO;
+import cn.itclass.user.entity.DelAddressVO;
 import cn.itclass.user.entity.GetAddressVO;
 import cn.itclass.user.entity.UserInfoVo;
 
 public interface AddressService {
-    public JsonResult addAddress(AddAddressVO addAddressVO);
+    public JsonResult addAddress(AddressVO addressVO);
 
-    public void deleteAddress();
+    public JsonResult deleteAddress(DelAddressVO addressVO);
 
     public JsonResult getAddress(GetAddressVO getAddressVO);
 

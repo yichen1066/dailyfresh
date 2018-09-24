@@ -5,8 +5,8 @@ import io.swagger.annotations.ApiModel;
 
 import javax.validation.constraints.NotNull;
 
-@ApiModel(value = "AddAddressVO", description = "添加收货地址VO")
-public class AddAddressVO extends BaseVO{
+@ApiModel(value = "AddressVO", description = "添加收货地址VO")
+public class AddressVO extends BaseVO{
 
     @NotNull(message = "地址对象不能为空")
     private AddressPOJO address;

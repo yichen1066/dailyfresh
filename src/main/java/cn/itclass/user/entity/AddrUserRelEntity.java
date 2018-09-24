@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "address_user_rel")
 public class AddrUserRelEntity extends BaseEntity {
-    private static final long serialVersionUID = 124342L;
+    private static final long serialVersionUID = -653124342L;
 
     /**
      * 地址与用户关系表id，主键

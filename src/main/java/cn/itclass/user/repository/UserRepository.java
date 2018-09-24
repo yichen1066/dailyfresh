@@ -46,4 +46,11 @@ public interface UserRepository extends JpaRepository<UserInfoEntity, String>, J
 	@Modifying
 	@Query(value = "update UserInfoEntity u set u.realName = :realName, u.nickName = :nickName, u.birthdate = :birthdate, u.residence = :residence where u.userAccount = :userAccount")
 	int updateUserByRealNameAndNickNameAndBirthDateAndResidence(@Param("userAccount") String userAccount, @Param("realName") String realName, @Param("nickName") String nickName, @Param("birthdate") Date birthdate, @Param("residence") String residence);
+
+	/**
+	 * 根据id查询用户信息
+	 * @param userId
+	 * @return
+	 */
+	UserInfoEntity findByUserId(String userId);
 }

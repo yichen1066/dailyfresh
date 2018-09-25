@@ -4,7 +4,7 @@ import cn.itclass.auth.annotation.AuthFilter;
 import cn.itclass.common.entity.SystemResponseEnum;
 import cn.itclass.common.utils.JsonResult;
 import cn.itclass.user.entity.AddressVO;
-import cn.itclass.user.entity.DelAddressVO;
+import cn.itclass.user.entity.ModifyAddressVO;
 import cn.itclass.user.entity.GetAddressVO;
 import cn.itclass.user.entity.UserInfoVo;
 import cn.itclass.user.service.AddressService;
@@ -31,14 +31,14 @@ public class AddressController {
     private AddressService addressService;
 
     @AuthFilter
-    @RequestMapping(value = "/add")
+    @RequestMapping(value = "/saveOrUpdateAddress")
     @ApiOperation(value = "添加收货地址", httpMethod = "POST")
-    public JsonResult addAddrByUser(@RequestBody AddressVO addAddressVO){
-        return this.addressService.addAddress(addAddressVO);
+    public JsonResult saveAddress(@RequestBody AddressVO addAddressVO){
+        return this.addressService.saveOrUpdateAddress(addAddressVO);
     }
 
     @AuthFilter
-    @RequestMapping(value = "/getAll")
+    @RequestMapping(value = "/getAllAddress")
     @ApiOperation(value = "查询用户所有的收货地址", httpMethod = "POST")
     public JsonResult getAllAddress(@RequestBody @ApiParam("指定用户的id") GetAddressVO getAddressVO){
         return this.addressService.getAddress(getAddressVO);
@@ -47,18 +47,18 @@ public class AddressController {
     @AuthFilter
     @RequestMapping(value = "/updateDefaultAddressId")
     @ApiOperation(value = "更新默认收货地址", httpMethod = "POST")
-    public JsonResult updateDefaultAddressId(@RequestBody UserInfoVo userInfoVo){
-        JsonResult jsonResult = this.addressService.updateDefaultAddressId(userInfoVo);
+    public JsonResult updateDefaultAddressId(@RequestBody ModifyAddressVO addressVO){
+        JsonResult jsonResult = this.addressService.updateDefaultAddressId(addressVO);
         if(jsonResult.getResultCode() != SystemResponseEnum.SUCCESS.name()){
-            logger.error(MODULE_NAME, "updateDefaultAddressId", "更新默认收货地址失败， addressId=", userInfoVo.getAddressId());
+            logger.error(MODULE_NAME, "updateDefaultAddressId", "更新默认收货地址失败， addressId=", addressVO.getAddressId());
         }
         return jsonResult;
     }
 
     @AuthFilter
-    @RequestMapping(value = "/delete")
+    @RequestMapping(value = "/deleteAddress")
     @ApiOperation(value = "删除收货地址", httpMethod = "POST")
-    public JsonResult deleteAddress(@RequestBody DelAddressVO addressVO){
+    public JsonResult deleteAddress(@RequestBody ModifyAddressVO addressVO){
         return this.addressService.deleteAddress(addressVO);
     }
 }

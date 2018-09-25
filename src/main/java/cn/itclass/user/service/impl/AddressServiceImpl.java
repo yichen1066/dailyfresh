@@ -19,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AddressServiceImpl implements AddressService {
@@ -45,21 +44,12 @@ public class AddressServiceImpl implements AddressService {
     @AuthFilter
     @Override
     @Transactional
-    public JsonResult addAddress(AddressVO addressVO) {
+    public JsonResult saveOrUpdateAddress(AddressVO addressVO) {
         //判断userID是否存在
         UserInfoEntity userEntity = this.userRepository.findByUserId(addressVO.getUserId());
         if(userEntity != null){
-            //保存地址信息
-            AddressEntity addressEntity = new AddressEntity();
-            BeanUtils.copyProperties(addressVO.getAddress(), addressEntity);
-            this.addressRepository.saveAndFlush(addressEntity);
-
-            //保存地址与用户的关联信息
-            AddrUserRelVO relVO = new AddrUserRelVO();
-            relVO.setAddressId(addressEntity.getAddressId());
-            relVO.setUserId(addressVO.getUserId());
-            this.addAddressUserRel(relVO);
-            logger.info(MODULE_NAME, "[addAddress]", "添加收货地址成功：", JSONObject.toJSONString(addressEntity));
+            this.saveAddress(addressVO);
+            logger.info(MODULE_NAME, "[addAddress]", "添加收货地址成功");
             return JsonResult.success("添加收货地址成功！");
         }
         logger.error(MODULE_NAME, "[addAddress]", "添加收货地址失败：", addressVO.getUserId());
@@ -70,7 +60,15 @@ public class AddressServiceImpl implements AddressService {
      * 增加地址与用户关联表信息
      * @param relVO
      */
-    private void addAddressUserRel(AddrUserRelVO relVO) {
+    private void saveAddress(AddressVO addressVO) {
+        //保存地址信息
+        AddressEntity addressEntity = new AddressEntity();
+        BeanUtils.copyProperties(addressVO.getAddress(), addressEntity);
+        this.addressRepository.saveAndFlush(addressEntity);
+
+        AddrUserRelVO relVO = new AddrUserRelVO();
+        relVO.setAddressId(addressEntity.getAddressId());
+        relVO.setUserId(addressVO.getUserId());
         AddrUserRelEntity relEntity = new AddrUserRelEntity();
         BeanUtils.copyProperties(relVO, relEntity);
         this.addrUserRelRepository.save(relEntity);
@@ -83,7 +81,7 @@ public class AddressServiceImpl implements AddressService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public JsonResult deleteAddress(DelAddressVO addressVO) {
+    public JsonResult deleteAddress(ModifyAddressVO addressVO) {
         AddressEntity addressEntity = this.addressRepository.findByAddressId(addressVO.getAddressId());
         AddrUserRelEntity addrUserRelEntity = this.addrUserRelRepository.findByAddressIdAndUserId(addressVO.getAddressId(), addressVO.getUserId());
         if((addressEntity != null) && (addrUserRelEntity != null)){
@@ -134,8 +132,12 @@ public class AddressServiceImpl implements AddressService {
      * @return
      */
     @Override
-    public JsonResult updateDefaultAddressId(UserInfoVo userInfoVo) {
-        int retCode =  this.addressRepository.updateDefaultAddressId(userInfoVo.getAddressId(), userInfoVo.getUserId());
+    public JsonResult updateDefaultAddressId(ModifyAddressVO addressVO) {
+        AddressEntity addressEntity = this.addressRepository.findByAddressId(addressVO.getAddressId());
+        if(addressEntity == null){
+            return JsonResult.fail(SystemResponseEnum.PARAM_ERROR);
+        }
+        int retCode =  this.addressRepository.updateDefaultAddressId(addressVO.getAddressId(), addressVO.getUserId());
         if(retCode == 1){
             return JsonResult.success("更新用户默认收货地址成功");
         }

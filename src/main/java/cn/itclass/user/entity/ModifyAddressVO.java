@@ -2,7 +2,7 @@ package cn.itclass.user.entity;
 
 import cn.itclass.common.entity.BaseVO;
 
-public class DelAddressVO extends BaseVO {
+public class ModifyAddressVO extends BaseVO {
 
     private String addressId;
 

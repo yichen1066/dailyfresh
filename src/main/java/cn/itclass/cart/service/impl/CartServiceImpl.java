@@ -3,6 +3,7 @@ package cn.itclass.cart.service.impl;
 import cn.itclass.cart.entity.CartInfoDTO;
 import cn.itclass.cart.entity.CartInfoEntity;
 import cn.itclass.cart.entity.CartInfoVO;
+import cn.itclass.cart.entity.GetCartInfoVO;
 import cn.itclass.cart.repository.CartInfoRepository;
 import cn.itclass.cart.service.CartService;
 import cn.itclass.goods.entity.GoodsInfoEntity;
@@ -35,22 +36,8 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public List<CartInfoDTO> findAllCarts(String userId) {
-        List<Object[]> goodsInfoEntities = this.cartInfoRepository.findAllCarts(userId);
-        List<CartInfoDTO> cartInfoDTOS = new ArrayList<CartInfoDTO>();
-
-        //object转为dto
-        for(Object[] entity : goodsInfoEntities){
-            CartInfoDTO cartInfoDTO = new CartInfoDTO();
-            cartInfoDTO.setCartId((String)entity[0]);
-            cartInfoDTO.setDefaultPic((String)entity[1]);
-            cartInfoDTO.setGoodsTitle((String)entity[2]);
-            cartInfoDTO.setSellPrice((BigDecimal)entity[3]);
-            cartInfoDTO.setPriceUnit((String)entity[4]);
-            cartInfoDTO.setStock((Integer)entity[5]);
-            cartInfoDTO.setCount((Integer)entity[6]);
-            cartInfoDTOS.add(cartInfoDTO);
-        }
-        return cartInfoDTOS;
+        List<CartInfoDTO> goodsInfoEntities = this.cartInfoRepository.findAllCarts(userId);
+        return goodsInfoEntities;
     }
 
     /**
@@ -68,5 +55,15 @@ public class CartServiceImpl implements CartService {
     @Override
     public void deleteAllCartInfo(String userId) {
         this.cartInfoRepository.deleteAllByUserId(userId);
+    }
+
+    @Override
+    public List<CartInfoDTO> findAllByCartId(GetCartInfoVO cartInfoVO) {
+        List<CartInfoDTO> cartInfoDTOS = new ArrayList<CartInfoDTO>();
+        for(String cartId : cartInfoVO.getCartIds()){
+            CartInfoDTO cartInfo = this.cartInfoRepository.findCartsById(cartInfoVO.getUserId(), cartId);
+            cartInfoDTOS.add(cartInfo);
+        }
+        return cartInfoDTOS;
     }
 }

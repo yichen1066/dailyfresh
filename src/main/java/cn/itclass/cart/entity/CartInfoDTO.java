@@ -1,5 +1,7 @@
 package cn.itclass.cart.entity;
 
+import cn.itclass.goods.entity.GoodsInfoEntity;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -40,6 +42,19 @@ public class CartInfoDTO implements Serializable {
      * 该商品购买数量
      */
     private Integer count;
+
+    public CartInfoDTO(CartInfoEntity cartInfoEntity, GoodsInfoEntity goodsInfoEntity){
+        this.cartId = cartInfoEntity.getId();
+        this.defaultPic = goodsInfoEntity.getDefaultPic();
+        this.goodsTitle = goodsInfoEntity.getGoodsTitle();
+        this.sellPrice = goodsInfoEntity.getSellPrice();
+        this.priceUnit = goodsInfoEntity.getPriceUnit();
+        this.stock = goodsInfoEntity.getStock();
+        this.count = cartInfoEntity.getCount();
+
+    }
+
+    public  CartInfoDTO(){}
 
     public String getCartId() {
         return cartId;

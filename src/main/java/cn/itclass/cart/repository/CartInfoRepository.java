@@ -21,8 +21,16 @@ public interface CartInfoRepository extends JpaRepository<CartInfoEntity, Long> 
      * @param userId
      * @return
      */
-    @Query("select c.id, g.defaultPic, g.goodsTitle, g.sellPrice, g.priceUnit, g.stock, c.count from CartInfoEntity c left outer join GoodsInfoEntity g on g.goodsId = c.goodsId where c.userId = :userId")
-    List<Object[]> findAllCarts(@Param("userId") String userId);
+    @Query("select new cn.itclass.cart.entity.CartInfoDTO(c,g)  from CartInfoEntity c left outer join GoodsInfoEntity g on g.goodsId = c.goodsId where c.userId = :userId")
+    List<CartInfoDTO> findAllCarts(@Param("userId") String userId);
+
+    /**
+     * 根据用户id查询购物车信息
+     * @param userId
+     * @return
+     */
+    @Query("select new cn.itclass.cart.entity.CartInfoDTO(c,g)  from CartInfoEntity c left outer join GoodsInfoEntity g on g.goodsId = c.goodsId where c.userId = :userId and c.id = :cartId")
+    CartInfoDTO findCartsById(@Param("userId") String userId, @Param("cartId") String cartId);
 
     /**
      * 删除一条购物车记录

@@ -54,11 +54,19 @@ public class CartController {
      * @return
      */
     @AuthFilter
-    @RequestMapping(value = "/getCartInfo", method = RequestMethod.POST)
-    @ApiOperation(value = "查询购物车信息", httpMethod = "POST")
-    public JsonResult getCartInfo(@RequestBody GetCartInfoVO cartInfoVO){
+    @RequestMapping(value = "/getAllCartInfo", method = RequestMethod.POST)
+    @ApiOperation(value = "查询用户所有的购物车信息", httpMethod = "POST")
+    public JsonResult getAllCartInfo(@RequestBody GetCartInfoVO cartInfoVO){
         List<CartInfoDTO> allCarts = this.cartService.findAllCarts(cartInfoVO.getUserId());
         return JsonResult.success(allCarts);
+    }
+
+    @AuthFilter
+    @RequestMapping(value = "/getCartInfoByCartIds", method = RequestMethod.POST)
+    @ApiOperation(value = "根据用户id和购物车id查询唯一购物车信息", httpMethod = "POST")
+    public  JsonResult getCartInfoByCartIds(@RequestBody GetCartInfoVO cartInfoVO){
+        List<CartInfoDTO> cartInfos = this.cartService.findAllByCartId(cartInfoVO);
+        return JsonResult.success(cartInfos);
     }
 
     /**

@@ -41,4 +41,9 @@ public interface CartInfoRepository extends JpaRepository<CartInfoEntity, Long> 
     @Modifying
     @Query("delete from CartInfoEntity c where c.userId=:userId")
     void deleteAllByUserId(@Param("userId") String userId);
+
+    /**
+     * 根据商品id查询购物车信息
+     */
+    CartInfoEntity findByGoodsId(String goodsId);
 }

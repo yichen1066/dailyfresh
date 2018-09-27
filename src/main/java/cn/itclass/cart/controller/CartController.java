@@ -39,6 +39,7 @@ public class CartController {
      * @param cartInfoVO
      * @return
      */
+    @AuthFilter
     @RequestMapping(value = "/addItem", method = RequestMethod.POST)
     @ApiOperation(value = "添加商品购物车", httpMethod = "POST")
     public JsonResult addCartInfo(@RequestBody @Validated CartInfoVO cartInfoVO){

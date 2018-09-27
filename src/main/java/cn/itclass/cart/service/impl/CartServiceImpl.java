@@ -22,9 +22,15 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void addCartInfo(CartInfoVO cartInfoVO) {
-        CartInfoEntity cartInfoEntity = new CartInfoEntity();
-        BeanUtils.copyProperties(cartInfoVO, cartInfoEntity);
-        this.cartInfoRepository.save(cartInfoEntity);
+        CartInfoEntity cartInfo = this.cartInfoRepository.findByGoodsId(cartInfoVO.getGoodsId());
+        if(cartInfo == null){
+            CartInfoEntity cartInfoEntity = new CartInfoEntity();
+            BeanUtils.copyProperties(cartInfoVO, cartInfoEntity);
+            this.cartInfoRepository.save(cartInfoEntity);
+            return;
+        }
+        cartInfo.setCount(cartInfo.getCount() + cartInfoVO.getCount());
+        this.cartInfoRepository.save(cartInfo);
     }
 
     @Override

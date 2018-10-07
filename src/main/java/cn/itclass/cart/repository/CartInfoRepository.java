@@ -25,7 +25,7 @@ public interface CartInfoRepository extends JpaRepository<CartInfoEntity, Long> 
     List<CartInfoDTO> findAllCarts(@Param("userId") String userId);
 
     /**
-     * 根据用户id查询购物车信息
+     * 根据id查询购物车信息
      * @param userId
      * @return
      */

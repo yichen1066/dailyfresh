@@ -3,17 +3,17 @@ package cn.itclass.order.entity;
 import cn.itclass.common.entity.BaseEntity;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.CodePointLength;
+import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Entity
+@Table(name = "df_order")
 public class OrderInfoEntity extends BaseEntity {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -324324231L;
     /**
      * 订单id，主键
      */
@@ -99,7 +99,7 @@ public class OrderInfoEntity extends BaseEntity {
      * 下单时间
      */
     @Column(name = "place_order_time")
-    private Date placeOrderTime;
+    private Date placeOrderTime = new Date();
 
     /**
      * 支付方式
